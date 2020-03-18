@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Users from './components/users/Users';
+import AppRouter from './AppRouter';
 
 function App() {
   return (
     <div className="App">
-      <Users />
+        <AppRouter />
     </div>
   );
 }
