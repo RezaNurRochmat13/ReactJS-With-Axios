@@ -1,57 +1,46 @@
 import React from 'react';
-import axios from 'axios';
 
 class Users extends React.Component {
-    state = {
-        users: [],
-        name: ''
-    };
-
-    componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
-        .then(response => {
-            const users = response.data;
-            this.setState({ users });
-            console.log('State with data : ' + response);
-        });
-    };
-
-    handleChange = event => {
-        this.setState({name: event.target.value});
-    };
-
-    handleSubmitRequest = event => {
-        event.preventDefault();
-        
-        const userPayload = {
-            name: this.state.name
-        };
-
-        axios.post(`https://jsonplaceholder.typicode.com/users`, userPayload)
-        .then(res => {
-            console.log(res);
-            console.log(res.data);
-            alert('Success Insert : ' + res.data )
-        })
-        .catch(err => {
-            console.error(err); 
-        })
-    }
 
     render() {
         return (
             <div className="user-content">
-                <ul>
-                    { this.state.users.map(user => <li>{user.name}</li>) }
-                </ul>
-
-                {/* Form add users example */}
-                <form onSubmit={this.handleSubmitRequest}>
-                    <label>Person name</label>
-                    <input type="text" name="name" onChange={this.handleChange} /> <br />
-
-                    <button type="submit">Submit</button>
-                </form>
+                <div className="container">
+                    <div className="card">
+                        <div className="card-header">List Users</div>
+                        <div class="card-body">
+                            <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
